@@ -161,9 +161,7 @@ class Menu{
 
 
             if(this.data.options.hasOwnProperty('openAndCloseWith')){
-
                 this.openAndCloseWith(elementOpener, opener)
-
             }
             else if(this.data.options.hasOwnProperty('openWith') && this.data.options.hasOwnProperty('closeWith')){
                 elementOpener = this.data.options.openWith
