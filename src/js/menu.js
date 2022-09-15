@@ -36,7 +36,9 @@ class Menu{
                     console.log('You are using a measure that does not exist. By default, the size class will be large (lg)')
                     menu.classList.add('menu--lg')
                 }
-
+            }
+            else{
+                menu.classList.add('menu--lg')
             }
             
             if(this.data.options.hasOwnProperty('direction')){
@@ -55,6 +57,10 @@ class Menu{
                 }
 
             }
+            else{
+                menu.classList.add('menu--to-left')
+                opener = 'open--left'
+            }
 
             if(this.data.options.hasOwnProperty('speed')){
 
@@ -66,6 +72,9 @@ class Menu{
                 else{
                     menu.style.cssText += 'transition-duration:'+this.data.options.speed+' !important';
                 }
+            }
+            else{
+                menu.classList.add(`menu--speed-normal`)
             }
 
 
@@ -147,7 +156,7 @@ class Menu{
         else if(element.startsWith('#')){
 
             var elementID = document.getElementById(element.substring(1))
-            
+
             elementID.addEventListener('click', function handleClick(event) {
                 if(menu.classList.contains(opener)){
                     menu.classList.remove(opener)
