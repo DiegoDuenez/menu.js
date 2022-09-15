@@ -80,15 +80,6 @@ speed
     Menu = new Menu({options: {speed: '0.8s'}})
 ```
 
-isFullscreen
-
-* @Boolean
-* In this property you are going to define if your menu will be of the fullscreen type or a normal sidebar, this property is true by default.
-
-```javascript
-    Menu = new Menu({options: {isFullscreen: false}})
-```
-
 #### Methods
 
 init()

@@ -44,89 +44,29 @@ class Menu{
             }
             
             if(this.data.options.hasOwnProperty('direction')){
+                
                 if(this.data.options.direction == 'top'){
-                    menu.classList.add('menu--to-top')
 
-                    if(this.data.options.hasOwnProperty('isFullscreen')){
-                        if(this.data.options.isFullscreen  == false){
-                            opener = 'open--top-50'
-                        }
-                        else if(this.data.options.isFullscreen  == true){
-                            opener = 'open--top'
-                        }
-                        else{
-                            console.log('* * *  WARNING * * *')
-                            console.log('The value of isFullscreen property is not valid. By default, the isFullscreen values is true.')
-                            opener = 'open--top'
-                        }
-                    }
-                    else{
-                        opener = 'open--top'
-                    }
+                    menu.classList.add('menu--to-top')
+                    opener = 'open--top'
                     
                 }
                 else if(this.data.options.direction == 'bottom'){
+
                     menu.classList.add('menu--to-bottom')
-                    
-                    if(this.data.options.hasOwnProperty('isFullscreen')){
-                        if(this.data.options.isFullscreen  == false){
-                            opener = 'open--bottom-50'
-                        }
-                        else if(this.data.options.isFullscreen  == true){
-                            opener = 'open--bottom'
-                        }
-                        else{
-                            console.log('* * *  WARNING * * *')
-                            console.log('The value of isFullscreen property is not valid. By default, the isFullscreen values is true.')
-                            opener = 'open--bottom'
-                        }
-                    }
-                    else{
-                        opener = 'open--bottom'
-                    }
+                    opener = 'open--bottom'
 
                 }
                 else if(this.data.options.direction == 'right'){
 
                     menu.classList.add('menu--to-right')
-
-                    if(this.data.options.hasOwnProperty('isFullscreen')){
-                        if(this.data.options.isFullscreen  == false){
-                            opener = 'open--right-50'
-                        }
-                        else if(this.data.options.isFullscreen  == true){
-                            opener = 'open--right'
-                        }
-                        else{
-                            console.log('* * *  WARNING * * *')
-                            console.log('The value of isFullscreen property is not valid. By default, the isFullscreen values is true.')
-                            opener = 'open--right'
-                        }
-                    }
-                    else{
-                        opener = 'open--right'
-                    }
+                    opener = 'open--right'
 
                 }
                 else if(this.data.options.direction == 'left'){
-                    menu.classList.add('menu--to-left')
 
-                    if(this.data.options.hasOwnProperty('isFullscreen')){
-                        if(this.data.options.isFullscreen  == false){
-                            opener = 'open--left-50'
-                        }
-                        else if(this.data.options.isFullscreen  == true){
-                            opener = 'open--left'
-                        }
-                        else{
-                            console.log('* * *  WARNING * * *')
-                            console.log('The value of isFullscreen property is not valid. By default, the isFullscreen values is true.')
-                            opener = 'open--left'
-                        }
-                    }
-                    else{
-                        opener = 'open--left'
-                    }
+                    menu.classList.add('menu--to-left')
+                    opener = 'open--left'
 
                 }
                 else{
