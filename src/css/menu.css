@@ -1,0 +1,183 @@
+/*
+|   menu.css 2022 @DiegoDuenez
+|   ---------------------------------------------------------------------------------
+|   @Menu
+|   ---------------------------------------------------------------------------------
+|
+*/
+
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+/*
+|  ----------------------------------------------------------------------------------
+|   Menu container
+|  ----------------------------------------------------------------------------------
+|   
+|   This is the container class for your menu, you can overwrite with your own style.
+|  
+|   
+*/
+.menu{
+    position: relative;
+    /* display: flex; */
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 9999;
+    /* flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+    padding: 5%;
+    background-color: rgb(245, 237, 14);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+/*
+|  ----------------------------------------------------------------------------------
+|   Menu direction
+|  ----------------------------------------------------------------------------------
+|   
+|   These classes are used for the direction when you open your menu.
+|  
+|   
+*/
+.menu--to-left{
+    transition: left .5s;
+    left: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.menu--to-right{
+    transition: right .5s;
+    right: 100%;
+}
+
+.menu--to-top{
+    transition: top .5s;
+    top: 100%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.menu--to-bottom{
+    transition: bottom .5s;
+    bottom: 100%;
+}
+
+
+
+/*
+|  ----------------------------------------------------------------------------------
+|   Open in 0%
+|  ----------------------------------------------------------------------------------
+|   
+|   These classes are used when your menu is preferably a FULLSCREEN MENU but you
+|   can use it anytime.
+|   
+*/
+.open--left{
+    left:0;
+}
+
+.open--right{
+    right:0;
+}
+
+.open--top{
+    top:0;
+}
+
+.open--bottom{
+    bottom:0;
+}
+
+
+
+/*
+|  ----------------------------------------------------------------------------------
+|   Open in 50%
+|  ----------------------------------------------------------------------------------
+|   
+|   These classes are used when your menu is a NON-FULLSCREEN sidebar.
+|   
+*/
+.open--right-50{
+    right:50%;
+}
+
+.open--left-50{
+    left:50%;
+}
+
+.open--top-50{
+    top:50%;
+}
+
+.open--bottom-50{
+    bottom:50%;
+}
+
+
+
+/*
+|  ----------------------------------------------------------------------------------
+|   Menu size
+|  ----------------------------------------------------------------------------------
+|   
+|   These classes are used to size your menu.
+|   
+|   sm -> Small -> 30%
+|   md -> Medium -> 50%
+|   lg -> Large -> 100% (FOR FULLSCREEN MENUS)
+|
+*/
+.menu--sm{
+    width: 30%;
+}
+
+.menu--md{
+    width: 50%;
+}
+
+.menu--lg{
+    width: 100%;
+}
+   
+
+
+/*
+|  ----------------------------------------------------------------------------------
+|   Menu speed
+|  ----------------------------------------------------------------------------------
+|   
+|   These classes are used to change the speed when you menu is open.
+|   
+|   slow -> 2 seconds
+|   normal -> .5 seconds
+|   fast -> .2 seconds
+|
+*/
+.menu--speed--slow{
+    transition-duration: 2s;
+}  
+
+.menu--speed--normal{
+    transition-duration: .5s;
+}   
+
+.menu--speed--fast{
+    transition-duration: .2s;
+}   
