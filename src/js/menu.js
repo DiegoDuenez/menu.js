@@ -13,7 +13,6 @@ class Menu{
         this.data = data
     }
 
-
     init(){
 
         var menu = document.querySelector('.menu')
@@ -26,14 +25,11 @@ class Menu{
 
           
             if(this.data.options.hasOwnProperty('size')){
-                if(this.data.options.size == 'sm'){
-                    menu.classList.add('menu--sm')
-                }
-                else if(this.data.options.size == 'md'){
-                    menu.classList.add('menu--md')
-                }
-                else if(this.data.options.size == 'lg'){
-                    menu.classList.add('menu--lg')
+
+                var sizes = new Set(["sm", "md", "lg"]);
+
+                if(sizes.has(this.data.options.size)){
+                    menu.classList.add(`menu--${this.data.options.size}`)
                 }
                 else{
                     console.log('* * *  WARNING * * *')
@@ -44,30 +40,12 @@ class Menu{
             }
             
             if(this.data.options.hasOwnProperty('direction')){
-                
-                if(this.data.options.direction == 'top'){
 
-                    menu.classList.add('menu--to-top')
-                    opener = 'open--top'
-                    
-                }
-                else if(this.data.options.direction == 'bottom'){
+                var positions = new Set(["top", "left", "right", "bottom"]);
 
-                    menu.classList.add('menu--to-bottom')
-                    opener = 'open--bottom'
-
-                }
-                else if(this.data.options.direction == 'right'){
-
-                    menu.classList.add('menu--to-right')
-                    opener = 'open--right'
-
-                }
-                else if(this.data.options.direction == 'left'){
-
-                    menu.classList.add('menu--to-left')
-                    opener = 'open--left'
-
+                if(positions.has(this.data.options.direction)){
+                    menu.classList.add(`menu--to-${this.data.options.direction}`)
+                    opener = `open--${this.data.options.direction}`
                 }
                 else{
                     console.log('* * *  WARNING * * *')
@@ -75,17 +53,15 @@ class Menu{
                     menu.classList.add('menu--to-left')
                     opener = 'open--left'
                 }
+
             }
 
             if(this.data.options.hasOwnProperty('speed')){
-                if(this.data.options.speed == 'slow'){
-                    menu.classList.add('menu--speed--slow')
-                }
-                else if(this.data.options.speed == 'normal'){
-                    menu.classList.add('menu--speed--normal')
-                }
-                else if(this.data.options.speed == 'fast'){
-                    menu.classList.add('menu--speed--fast')
+
+                var speeds = new Set(["slow", "normal", "fast"]);
+
+                if(speeds.has(this.data.options.speed)){
+                    menu.classList.add(`menu--speed-${this.data.options.speed}`)
                 }
                 else{
                     menu.style.cssText += 'transition-duration:'+this.data.options.speed+' !important';
@@ -141,6 +117,7 @@ class Menu{
         else if(element.startsWith('#')){
 
             var elementID = document.getElementById(element.substring(1))
+
             elementID.addEventListener('click', function handleClick(event) {
                 if(!menu.classList.contains(opener)){
                     menu.classList.add(opener)
@@ -170,6 +147,7 @@ class Menu{
         else if(element.startsWith('#')){
 
             var elementID = document.getElementById(element.substring(1))
+            
             elementID.addEventListener('click', function handleClick(event) {
                 if(menu.classList.contains(opener)){
                     menu.classList.remove(opener)

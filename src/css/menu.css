@@ -170,14 +170,14 @@
 |   fast -> .2 seconds
 |
 */
-.menu--speed--slow{
+.menu--speed-slow{
     transition-duration: 2s;
 }  
 
-.menu--speed--normal{
+.menu--speed-normal{
     transition-duration: .5s;
 }   
 
-.menu--speed--fast{
+.menu--speed-fast{
     transition-duration: .2s;
 }   
