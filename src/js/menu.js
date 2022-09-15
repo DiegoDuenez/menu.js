@@ -170,10 +170,19 @@ class Menu{
                 elementCloser = this.data.options.closeWith
                 this.openWith(elementOpener, opener)
                 this.closeWith(elementCloser, opener)
-
             }
-            
-
+            else if(this.data.options.hasOwnProperty('openWith')){
+                elementOpener = this.data.options.openWith
+                this.openWith(elementOpener, opener)
+                console.log('* * *  WARNING * * *')
+                console.log('You need add a closeButton in the options')
+            }
+            else if(this.data.options.hasOwnProperty('closeWith')){
+                elementCloser = this.data.options.closeWith
+                this.closeWith(elementCloser, opener)
+                console.log('* * *  WARNING * * *')
+                console.log('You need add a openButton in the options')
+            }
 
             return this
 
