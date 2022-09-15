@@ -24,14 +24,7 @@ class Menu{
 
         if(this.data.hasOwnProperty('options')){
 
-            if(this.data.options.hasOwnProperty('openAndCloseWith')){
-                elementOpener = this.data.options.openAndCloseWith
-            }
-            else if(this.data.options.hasOwnProperty('openWith') && this.data.options.hasOwnProperty('closeWith')){
-                elementOpener = this.data.options.openWith
-                elementCloser = this.data.options.closeWith
-            }
-
+          
             if(this.data.options.hasOwnProperty('size')){
                 if(this.data.options.size == 'sm'){
                     menu.classList.add('menu--sm')
