@@ -1,5 +1,5 @@
 /*
-|   menu.js 2022 @DiegoDuenez
+|   this.menu.js 2022 @DiegoDuenez
 |   ---------------------------------------------------------------------------------
 |   @Menu
 |   ---------------------------------------------------------------------------------
@@ -15,18 +15,19 @@ class Menu{
 
     init(){
 
-        if(this.data.options.hasOwnProperty('menu')){
-            var menu = document.querySelector(this.data.options.menu)
-        }
-        else{
-            var menu = document.querySelector('.menu')
-        }
-
         var opener = 'open--left'
         var elementOpener;
         var elementCloser;
 
         if(this.data.hasOwnProperty('options')){
+
+            if(this.data.options.hasOwnProperty('element')){
+                this.menu = document.querySelector(this.data.options.element)
+            }
+            else{
+                console.log('* * *  WARNING * * *')
+                console.log('You need add element property in options')
+            }
 
           
             if(this.data.options.hasOwnProperty('size')){
@@ -34,16 +35,16 @@ class Menu{
                 var sizes = new Set(["sm", "md", "lg"]);
 
                 if(sizes.has(this.data.options.size)){
-                    menu.classList.add(`menu--${this.data.options.size}`)
+                    this.menu.classList.add(`menu--${this.data.options.size}`)
                 }
                 else{
                     console.log('* * *  WARNING * * *')
                     console.log('You are using a measure that does not exist. By default, the size class will be large (lg)')
-                    menu.classList.add('menu--lg')
+                    this.menu.classList.add('menu--lg')
                 }
             }
             else{
-                menu.classList.add('menu--lg')
+                this.menu.classList.add('menu--lg')
             }
             
             if(this.data.options.hasOwnProperty('direction')){
@@ -51,19 +52,19 @@ class Menu{
                 var positions = new Set(["top", "left", "right", "bottom"]);
 
                 if(positions.has(this.data.options.direction)){
-                    menu.classList.add(`menu--to-${this.data.options.direction}`)
+                    this.menu.classList.add(`menu--to-${this.data.options.direction}`)
                     opener = `open--${this.data.options.direction}`
                 }
                 else{
                     console.log('* * *  WARNING * * *')
                     console.log('You are using a direction that does not exist. By default, the direction class will be to left (left)')
-                    menu.classList.add('menu--to-left')
+                    this.menu.classList.add('menu--to-left')
                     opener = 'open--left'
                 }
 
             }
             else{
-                menu.classList.add('menu--to-left')
+                this.menu.classList.add('menu--to-left')
                 opener = 'open--left'
             }
 
@@ -72,14 +73,14 @@ class Menu{
                 var speeds = new Set(["slow", "normal", "fast"]);
 
                 if(speeds.has(this.data.options.speed)){
-                    menu.classList.add(`menu--speed-${this.data.options.speed}`)
+                    this.menu.classList.add(`menu--speed-${this.data.options.speed}`)
                 }
                 else{
-                    menu.style.cssText += 'transition-duration:'+this.data.options.speed+' !important';
+                    this.menu.style.cssText += 'transition-duration:'+this.data.options.speed+' !important';
                 }
             }
             else{
-                menu.classList.add(`menu--speed-normal`)
+                this.menu.classList.add(`menu--speed-normal`)
             }
 
 
@@ -112,30 +113,34 @@ class Menu{
         }
     }
 
-
     openWith(element, opener){
-
-        var menu = document.querySelector('.menu')
 
         if(element.startsWith('.')){
 
-            var element = document.getElementsByClassName(element.substring(1))[0];
+            const elements = Array.from(document.getElementsByClassName(element.substring(1)));
 
-            element.addEventListener('click', function handleClick(event) {
-                if(!menu.classList.contains(opener)){
-                    menu.classList.add(opener)
-                }
-                
-            });
+            elements.forEach(element => {
+
+                element.addEventListener('click', () => {
+
+                    if(!this.menu.classList.contains(opener)){
+                        this.menu.classList.add(opener)
+                    }
+                    
+                });
+
+            })
+
+            
            
         }
         else if(element.startsWith('#')){
 
             var elementID = document.getElementById(element.substring(1))
 
-            elementID.addEventListener('click', function handleClick(event) {
-                if(!menu.classList.contains(opener)){
-                    menu.classList.add(opener)
+            elementID.addEventListener('click', () => {
+                if(!this.menu.classList.contains(opener)){
+                    this.menu.classList.add(opener)
                 }
             });
 
@@ -143,29 +148,32 @@ class Menu{
 
     }
 
-    closeWith(element, opener){
 
-        var menu = document.querySelector('.menu')
+    closeWith(element, opener){
 
         if(element.startsWith('.')){
 
-            var element = document.getElementsByClassName(element.substring(1))[0];
+            var elements =  Array.from(document.getElementsByClassName(element.substring(1)));
 
-            element.addEventListener('click', function handleClick(event) {
-                if(menu.classList.contains(opener)){
-                    menu.classList.remove(opener)
-                }
-                
-            });
+            elements.forEach(element => {
+
+                element.addEventListener('click', () => {
+                    if(this.menu.classList.contains(opener)){
+                        this.menu.classList.remove(opener)
+                    }
+                    
+                });
+
+            })
            
         }
         else if(element.startsWith('#')){
 
             var elementID = document.getElementById(element.substring(1))
 
-            elementID.addEventListener('click', function handleClick(event) {
-                if(menu.classList.contains(opener)){
-                    menu.classList.remove(opener)
+            elementID.addEventListener('click', () => {
+                if(this.menu.classList.contains(opener)){
+                    this.menu.classList.remove(opener)
                 }
             });
 
@@ -176,30 +184,29 @@ class Menu{
 
     openAndCloseWith(element, opener){
 
-        var menu = document.querySelector('.menu')
-
         if(element.startsWith('.')){
             const elements = Array.from(document.getElementsByClassName(element.substring(1)));
+
             elements.forEach(element => {
-                element.addEventListener('click', function handleClick(event) {
-                    if(!menu.classList.contains(opener)){
-                        menu.classList.add(opener)
+                element.addEventListener('click', () => {
+                    if(!this.menu.classList.contains(opener)){
+                        this.menu.classList.add(opener)
                     }
                     else{
-                        menu.classList.remove(opener)
+                        this.menu.classList.remove(opener)
                     }
                 });
             });
+
         }
         else if(element.startsWith('#')){
             const elementID = document.getElementById(element.substring(1))
-            elementID.addEventListener('click', function handleClick(event) {
-                if(!menu.classList.contains(opener)){
-                    menu.classList.add(opener)
-    
+            elementID.addEventListener('click', () => {
+                if(!this.menu.classList.contains(opener)){
+                    this.menu.classList.add(opener)
                 }
                 else{
-                    menu.classList.remove(opener)
+                    this.menu.classList.remove(opener)
                 }
     
             });
