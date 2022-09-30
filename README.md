@@ -109,6 +109,15 @@ timing
     Menu = new Menu({options: {timing: 'ease-in'}})
 ```
 
+warns
+
+* @Boolean
+* In this property you will define if you want console warning message or not. By default the value is true
+
+```javascript
+    Menu = new Menu({options: {warns: false}})
+```
+
 #### Methods
 
 init()

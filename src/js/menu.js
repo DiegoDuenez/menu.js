@@ -15,19 +15,19 @@ class Menu{
 
     init(){
 
-        var opener = 'open--left'
-        var elementOpener;
-        var elementCloser;
-
+        this.opener= 'open--left'
+      
         if(this.data.hasOwnProperty('options')){
 
+            this.data.options.hasOwnProperty('warns') ? this.warns = this.data.options.warns  :  this.warns = true;
+         
             if(this.data.options.hasOwnProperty('element')){
                 this.menu = document.querySelector(this.data.options.element)
             }
             else{
-                console.warn('* * *  WARNING * * * \nYou need add element property in the options')
+                this.warn('* * *  WARNING * * * \nYou need add element property in the options')
             }
-
+            
           
             if(this.data.options.hasOwnProperty('size')){
 
@@ -37,7 +37,7 @@ class Menu{
                     this.menu.classList.add(`menu--${this.data.options.size}`)
                 }
                 else{
-                    console.warn('* * *  WARNING * * * \nYou are using a measure that does not exist. By default, the size class will be large (lg)')
+                    this.warn('* * *  WARNING * * * \nYou are using a measure that does not exist. By default, the size class will be large (lg)')
                     this.menu.classList.add('menu--lg')
                 }
             }
@@ -51,18 +51,18 @@ class Menu{
 
                 if(positions.has(this.data.options.direction)){
                     this.menu.classList.add(`menu--to-${this.data.options.direction}`)
-                    opener = `open--${this.data.options.direction}`
+                    this.opener= `open--${this.data.options.direction}`
                 }
                 else{
-                    console.warn('* * *  WARNING * * * \nYou are using a direction that does not exist. By default, the direction class will be to left (left)')
+                    this.warn('* * *  WARNING * * * \nYou are using a direction that does not exist. By default, the direction class will be to left (left)')
                     this.menu.classList.add('menu--to-left')
-                    opener = 'open--left'
+                    this.opener= 'open--left'
                 }
 
             }
             else{
                 this.menu.classList.add('menu--to-left')
-                opener = 'open--left'
+                this.opener= 'open--left'
             }
 
             if(this.data.options.hasOwnProperty('speed')){
@@ -95,24 +95,24 @@ class Menu{
             }
 
             if(this.data.options.hasOwnProperty('openAndCloseWith')){
-                elementOpener = this.data.options.openAndCloseWith;
-                this.openAndCloseWith(elementOpener, opener)
+                this.elementOpener = this.data.options.openAndCloseWith;
+                this.openAndCloseWith(this.elementOpener, this.opener)
             }
             else if(this.data.options.hasOwnProperty('openWith') && this.data.options.hasOwnProperty('closeWith')){
-                elementOpener = this.data.options.openWith
-                elementCloser = this.data.options.closeWith
-                this.openWith(elementOpener, opener)
-                this.closeWith(elementCloser, opener)
+                this.elementOpener = this.data.options.openWith
+                this.elementCloser = this.data.options.closeWith
+                this.openWith(this.elementOpener, this.opener)
+                this.closeWith(this.elementCloser, this.opener)
             }
             else if(this.data.options.hasOwnProperty('openWith')){
-                elementOpener = this.data.options.openWith
-                this.openWith(elementOpener, opener)
-                console.warn('* * *  WARNING * * * \nYou need add closeWith in the options')
+                this.elementOpener = this.data.options.openWith
+                this.openWith(this.elementOpener, this.opener)
+                this.warn('* * *  WARNING * * * \nYou need add closeWith in the options')
             }
             else if(this.data.options.hasOwnProperty('closeWith')){
-                elementCloser = this.data.options.closeWith
-                this.closeWith(elementCloser, opener)
-                console.warn('* * *  WARNING * * * \nYou need add openWith in the options')
+                this.elementCloser = this.data.options.closeWith
+                this.closeWith(this.elementCloser, this.opener)
+                this.warn('* * *  WARNING * * * \nYou need add openWith in the options')
             }
 
         }
@@ -138,7 +138,7 @@ class Menu{
                 })
             }
             else{
-                console.warn(`* * *  WARNING * * * \nelement(s) ${element} not found`)
+                this.warn(`* * *  WARNING * * * \nelement(s) ${element} not found`)
             }
 
             
@@ -156,7 +156,7 @@ class Menu{
                 });
             }
             else{
-                console.warn(`* * *  WARNING * * * \nelement ${element} not found`)
+                this.warn(`* * *  WARNING * * * \nelement ${element} not found`)
             }
            
 
@@ -184,7 +184,7 @@ class Menu{
                 })
             }
             else{
-                console.warn(`* * *  WARNING * * * \nelement(s) ${element} not found`)
+                this.warn(`* * *  WARNING * * * \nelement(s) ${element} not found`)
             }
            
         }
@@ -200,7 +200,7 @@ class Menu{
                 });
             }
             else{
-                console.warn(`* * *  WARNING * * * \nelement ${element} not found`)
+                this.warn(`* * *  WARNING * * * \nelement ${element} not found`)
             }
 
         }
@@ -213,10 +213,12 @@ class Menu{
 
             const elements = Array.from(document.getElementsByClassName(element.substring(1)));
 
+
             if(elements.length > 0){
                 elements.forEach(element => {
                     element.addEventListener('click', () => {
                         if(!this.menu.classList.contains(opener)){
+                            
                             this.menu.classList.add(opener)
                         }
                         else{
@@ -226,7 +228,7 @@ class Menu{
                 });
             }
             else{
-                console.warn(`* * *  WARNING * * * \nelement(s) ${element} not found`)
+                this.warn(`* * *  WARNING * * * \nelement(s) ${element} not found`)
             }
 
         }
@@ -246,12 +248,15 @@ class Menu{
                 });
             }
             else{
-                console.warn(`* * *  WARNING * * * \nelement ${element} not found`)
+                this.warn(`* * *  WARNING * * * \nelement ${element} not found`)
             }
 
         }
     }
 
+    warn(message){
+        this.warns ? console.warn(message) : null
+    }
 
    
 
