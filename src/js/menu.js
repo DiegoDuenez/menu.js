@@ -1,5 +1,5 @@
 /*
-|   this.menu.js 2022 @DiegoDuenez
+|   menu.js 2022 @DiegoDuenez
 |   ---------------------------------------------------------------------------------
 |   @Menu
 |   ---------------------------------------------------------------------------------
@@ -25,8 +25,7 @@ class Menu{
                 this.menu = document.querySelector(this.data.options.element)
             }
             else{
-                console.log('* * *  WARNING * * *')
-                console.log('You need add element property in options')
+                console.warn('* * *  WARNING * * * \nYou need add element property in options')
             }
 
           
@@ -38,8 +37,7 @@ class Menu{
                     this.menu.classList.add(`menu--${this.data.options.size}`)
                 }
                 else{
-                    console.log('* * *  WARNING * * *')
-                    console.log('You are using a measure that does not exist. By default, the size class will be large (lg)')
+                    console.warn('* * *  WARNING * * * \nYou are using a measure that does not exist. By default, the size class will be large (lg)')
                     this.menu.classList.add('menu--lg')
                 }
             }
@@ -56,8 +54,7 @@ class Menu{
                     opener = `open--${this.data.options.direction}`
                 }
                 else{
-                    console.log('* * *  WARNING * * *')
-                    console.log('You are using a direction that does not exist. By default, the direction class will be to left (left)')
+                    console.warn('* * *  WARNING * * * \nYou are using a direction that does not exist. By default, the direction class will be to left (left)')
                     this.menu.classList.add('menu--to-left')
                     opener = 'open--left'
                 }
@@ -97,17 +94,13 @@ class Menu{
             else if(this.data.options.hasOwnProperty('openWith')){
                 elementOpener = this.data.options.openWith
                 this.openWith(elementOpener, opener)
-                console.log('* * *  WARNING * * *')
-                console.log('You need add closeWith in the options')
+                console.warn('* * *  WARNING * * * \nYou need add closeWith in the options')
             }
             else if(this.data.options.hasOwnProperty('closeWith')){
                 elementCloser = this.data.options.closeWith
                 this.closeWith(elementCloser, opener)
-                console.log('* * *  WARNING * * *')
-                console.log('You need add openWith in the options')
+                console.warn('* * *  WARNING * * * \nYou need add openWith in the options')
             }
-
-            return this
 
 
         }
@@ -119,17 +112,22 @@ class Menu{
 
             const elements = Array.from(document.getElementsByClassName(element.substring(1)));
 
-            elements.forEach(element => {
+            if(elements.length > 0){
+                elements.forEach(element => {
 
-                element.addEventListener('click', () => {
-
-                    if(!this.menu.classList.contains(opener)){
-                        this.menu.classList.add(opener)
-                    }
-                    
-                });
-
-            })
+                    element.addEventListener('click', () => {
+    
+                        if(!this.menu.classList.contains(opener)){
+                            this.menu.classList.add(opener)
+                        }
+                        
+                    });
+    
+                })
+            }
+            else{
+                console.warn(`* * *  WARNING * * * \nelement(s) ${element} not found`)
+            }
 
             
            
@@ -138,11 +136,17 @@ class Menu{
 
             var elementID = document.getElementById(element.substring(1))
 
-            elementID.addEventListener('click', () => {
-                if(!this.menu.classList.contains(opener)){
-                    this.menu.classList.add(opener)
-                }
-            });
+            if(elementID){
+                elementID.addEventListener('click', () => {
+                    if(!this.menu.classList.contains(opener)){
+                        this.menu.classList.add(opener)
+                    }
+                });
+            }
+            else{
+                console.warn(`* * *  WARNING * * * \nelement ${element} not found`)
+            }
+           
 
         }
 
@@ -155,61 +159,84 @@ class Menu{
 
             var elements =  Array.from(document.getElementsByClassName(element.substring(1)));
 
-            elements.forEach(element => {
+            if(elements.length > 0){
+                elements.forEach(element => {
 
-                element.addEventListener('click', () => {
-                    if(this.menu.classList.contains(opener)){
-                        this.menu.classList.remove(opener)
-                    }
-                    
-                });
+                    element.addEventListener('click', () => {
+                        if(this.menu.classList.contains(opener)){
+                            this.menu.classList.remove(opener)
+                        }
+                        
+                    });
 
-            })
+                })
+            }
+            else{
+                console.warn(`* * *  WARNING * * * \nelement(s) ${element} not found`)
+            }
            
         }
         else if(element.startsWith('#')){
 
             var elementID = document.getElementById(element.substring(1))
 
-            elementID.addEventListener('click', () => {
-                if(this.menu.classList.contains(opener)){
-                    this.menu.classList.remove(opener)
-                }
-            });
+            if(elementID){
+                elementID.addEventListener('click', () => {
+                    if(this.menu.classList.contains(opener)){
+                        this.menu.classList.remove(opener)
+                    }
+                });
+            }
+            else{
+                console.warn(`* * *  WARNING * * * \nelement ${element} not found`)
+            }
 
         }
 
     }
 
-
     openAndCloseWith(element, opener){
 
         if(element.startsWith('.')){
+
             const elements = Array.from(document.getElementsByClassName(element.substring(1)));
 
-            elements.forEach(element => {
-                element.addEventListener('click', () => {
+            if(elements.length > 0){
+                elements.forEach(element => {
+                    element.addEventListener('click', () => {
+                        if(!this.menu.classList.contains(opener)){
+                            this.menu.classList.add(opener)
+                        }
+                        else{
+                            this.menu.classList.remove(opener)
+                        }
+                    });
+                });
+            }
+            else{
+                console.warn(`* * *  WARNING * * * \nelement(s) ${element} not found`)
+            }
+
+        }
+        else if(element.startsWith('#')){
+
+            const elementID = document.getElementById(element.substring(1))
+
+            if(elementID){
+                elementID.addEventListener('click', () => {
                     if(!this.menu.classList.contains(opener)){
                         this.menu.classList.add(opener)
                     }
                     else{
                         this.menu.classList.remove(opener)
                     }
+        
                 });
-            });
+            }
+            else{
+                console.warn(`* * *  WARNING * * * \nelement ${element} not found`)
+            }
 
-        }
-        else if(element.startsWith('#')){
-            const elementID = document.getElementById(element.substring(1))
-            elementID.addEventListener('click', () => {
-                if(!this.menu.classList.contains(opener)){
-                    this.menu.classList.add(opener)
-                }
-                else{
-                    this.menu.classList.remove(opener)
-                }
-    
-            });
         }
     }
 
