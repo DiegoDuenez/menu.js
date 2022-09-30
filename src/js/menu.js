@@ -136,7 +136,6 @@ class Menu{
                 this.closeWith(this.elementCloser, this.opener, this.callbackOnClose)
                 this.warn('* * *  WARNING * * * \nYou need add openWith in the options')
             }
-            
 
         }
     }
@@ -185,7 +184,6 @@ class Menu{
             else{
                 this.warn(`* * *  WARNING * * * \nelement ${element} not found`)
             }
-           
 
         }
 
