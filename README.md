@@ -14,6 +14,15 @@
 
 #### Options
 
+element
+
+* @String
+* In this property you will define which element with a certain class (.class) or a certain id (#id) will be your menu
+
+```javascript
+    Menu = new Menu({options: {element: '.menu'}})
+```
+
 openAndCloseWith
 
 * @String
