@@ -16,6 +16,7 @@ class Menu{
     init(){
 
         this.opener= 'open--left'
+        this.isOpen = false
       
         if(this.data.hasOwnProperty('options')){
 
@@ -160,6 +161,7 @@ class Menu{
     
                         if(!this.menu.classList.contains(opener)){
                             this.menu.classList.add(opener)
+                            this.isOpen = true
                             if (typeof callback == "function")
                                 callback()
                         }
@@ -181,6 +183,7 @@ class Menu{
                 elementID.addEventListener(this.eventOnOpen, () => {
                     if(!this.menu.classList.contains(opener)){
                         this.menu.classList.add(opener)
+                        this.isOpen = true
                         if (typeof callback == "function")
                             callback()
                     }
@@ -208,6 +211,7 @@ class Menu{
                     element.addEventListener(this.eventOnClose, () => {
                         if(this.menu.classList.contains(opener)){
                             this.menu.classList.remove(opener)
+                            this.isOpen = false
                             if (typeof callback == "function")
                                 callback()
                         }
@@ -229,6 +233,7 @@ class Menu{
                 elementID.addEventListener(this.eventOnClose, () => {
                     if(this.menu.classList.contains(opener)){
                         this.menu.classList.remove(opener)
+                        this.isOpen = false
                         if (typeof callback == "function")
                             callback()
                     }
@@ -253,11 +258,13 @@ class Menu{
                     element.addEventListener(this.eventOnOpen, () => {
                         if(!this.menu.classList.contains(opener)){
                             this.menu.classList.add(opener)
+                            this.isOpen = true
                             if (typeof callbackOnOpen == "function")
                                 callbackOnOpen()
                         }
                         else{
                             this.menu.classList.remove(opener)
+                            this.isOpen = false
                             if (typeof callbackOnClose == "function")
                                 callbackOnClose()
                         }

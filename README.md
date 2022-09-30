@@ -176,4 +176,15 @@ init()
     Menu.init();
 ```
 
+#### Attributes
 
+isOpen
+
+* @Boolean
+* Returns if menu is open or not
+
+```javascript
+    Menu = new Menu({options: {element: '#menu', openAndCloseWith: '#mybutton', size:'lg', direction: 'left'}})
+    Menu.init();
+    console.log(Menu.isOpen)
+```
