@@ -140,8 +140,6 @@ class Menu{
             else{
                 this.warn(`* * *  WARNING * * * \nelement(s) ${element} not found`)
             }
-
-            
            
         }
         else if(element.startsWith('#')){
