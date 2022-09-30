@@ -17,6 +17,10 @@ class Menu{
 
         this.opener= 'open--left'
         this.isOpen = false
+        this.eventOnOpen = 'click'
+        this.eventOnClose = 'click'
+        this.callbackOnOpen = undefined
+        this.callbackOnClose = undefined
       
         if(this.data.hasOwnProperty('options')){
 
@@ -29,35 +33,24 @@ class Menu{
                 this.warn('* * *  WARNING * * * \nYou need add element property in the options')
             }
 
-            
             if(this.data.options.hasOwnProperty('eventOnOpen')){
                 this.eventOnOpen = this.data.options.eventOnOpen
             }
-            else{
-                this.eventOnOpen = 'click'
-            }
+            
 
             if(this.data.options.hasOwnProperty('eventOnClose')){
                 this.eventOnClose = this.data.options.eventOnClose
             }
-            else{
-                this.eventOnClose = 'click'
-            }
+            
 
             if(this.data.options.hasOwnProperty('callbackOnOpen')){
                 this.callbackOnOpen = this.data.options.callbackOnOpen
             }
-            else{
-                this.callbackOnOpen = undefined
-            }
-
+            
             if(this.data.options.hasOwnProperty('callbackOnClose')){
                 this.callbackOnClose = this.data.options.callbackOnClose
             }
-            else{
-                this.callbackOnClose = undefined
-            }
-            
+           
             if(this.data.options.hasOwnProperty('size')){
 
                 var sizes = new Set(["sm", "md", "lg"]);
