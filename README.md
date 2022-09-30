@@ -99,6 +99,16 @@ delay
     Menu = new Menu({options: {delay: '2s'}})
 ```
 
+timing
+
+* @String
+* In this property you will define with what delay you want the menu to open.
+    * custom -> You can add a default css values like: ease, ease-in, linear, etc...
+
+```javascript
+    Menu = new Menu({options: {timing: 'ease-in'}})
+```
+
 #### Methods
 
 init()

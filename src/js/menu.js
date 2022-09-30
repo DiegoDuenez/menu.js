@@ -25,7 +25,7 @@ class Menu{
                 this.menu = document.querySelector(this.data.options.element)
             }
             else{
-                console.warn('* * *  WARNING * * * \nYou need add element property in options')
+                console.warn('* * *  WARNING * * * \nYou need add element property in the options')
             }
 
           
@@ -87,6 +87,12 @@ class Menu{
                 this.menu.style.cssText += 'transition-delay:'+0+' !important';
             }
 
+            if(this.data.options.hasOwnProperty('timing')){
+                this.menu.style.cssText += 'transition-timing-function:'+this.data.options.timing+' !important';
+            }
+            else{
+                this.menu.style.cssText += 'transition-timing-function: unset !important';
+            }
 
             if(this.data.options.hasOwnProperty('openAndCloseWith')){
                 elementOpener = this.data.options.openAndCloseWith;
@@ -108,7 +114,6 @@ class Menu{
                 this.closeWith(elementCloser, opener)
                 console.warn('* * *  WARNING * * * \nYou need add openWith in the options')
             }
-
 
         }
     }
