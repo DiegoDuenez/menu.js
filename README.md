@@ -109,10 +109,56 @@ timing
     Menu = new Menu({options: {timing: 'ease-in'}})
 ```
 
+eventOnOpen
+
+* @String
+* In this property you will define which event will be used to open the menu. By default the event is click and you don't need to call in options.
+
+```javascript
+    Menu = new Menu({options: {eventOnOpen: 'mouseenter'}})
+```
+
+eventOnClose
+
+* @String
+* In this property you will define which event will be used to close the menu. By default the event is click and you don't need to call in options.
+
+```javascript
+    Menu = new Menu({options: {eventOnClose: 'mouseover'}})
+```
+
+callbackOnOpen
+
+* @Function
+* In this property you will define which function run when open the menu.
+
+```javascript
+    Menu = new Menu({options: {
+        callbackOnOpen: function(){
+            alert('Callback on open')
+        }
+    }})
+
+```
+
+callbackOnClose
+
+* @Function
+* In this property you will define which function run when close the menu.
+
+```javascript
+    Menu = new Menu({options: {
+        callbackOnOpen: function(){
+            alert('Callback on close')
+        }
+    }})
+```
+
+
 warns
 
 * @Boolean
-* In this property you will define if you want console warning message or not. By default the value is true
+* In this property you will define if you want console warning message or not. By default the value is true and you don't need to call in options.
 
 ```javascript
     Menu = new Menu({options: {warns: false}})
