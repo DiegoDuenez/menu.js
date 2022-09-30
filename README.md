@@ -97,7 +97,7 @@ init()
 * Once the options are ready in the class constructor, the init function will be used to run and make the menu work with the configuration.
 
 ```javascript
-    Menu = new Menu({options: {openAndCloseWith: '#mybutton', size:'lg', direction: 'left'}})
+    Menu = new Menu({options: {element: '#menu', openAndCloseWith: '#mybutton', size:'lg', direction: 'left'}})
     Menu.init();
 ```
 
