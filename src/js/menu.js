@@ -15,7 +15,12 @@ class Menu{
 
     init(){
 
-        var menu = document.querySelector('.menu')
+        if(this.data.options.hasOwnProperty('menu')){
+            var menu = document.querySelector(this.data.options.menu)
+        }
+        else{
+            var menu = document.querySelector('.menu')
+        }
 
         var opener = 'open--left'
         var elementOpener;
@@ -79,6 +84,7 @@ class Menu{
 
 
             if(this.data.options.hasOwnProperty('openAndCloseWith')){
+                elementOpener = this.data.options.openAndCloseWith;
                 this.openAndCloseWith(elementOpener, opener)
             }
             else if(this.data.options.hasOwnProperty('openWith') && this.data.options.hasOwnProperty('closeWith')){
