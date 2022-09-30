@@ -80,6 +80,13 @@ class Menu{
                 this.menu.classList.add(`menu--speed-normal`)
             }
 
+            if(this.data.options.hasOwnProperty('delay')){
+                this.menu.style.cssText += 'transition-delay:'+this.data.options.delay+' !important';
+            }
+            else{
+                this.menu.style.cssText += 'transition-delay:'+0+' !important';
+            }
+
 
             if(this.data.options.hasOwnProperty('openAndCloseWith')){
                 elementOpener = this.data.options.openAndCloseWith;

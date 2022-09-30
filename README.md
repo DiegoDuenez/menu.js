@@ -89,6 +89,16 @@ speed
     Menu = new Menu({options: {speed: '0.8s'}})
 ```
 
+delay
+
+* @String
+* In this property you will define with what delay you want the menu to open.
+    * custom -> You can add a custom speed like: 0.8s, 10s, 400ms or whatever
+
+```javascript
+    Menu = new Menu({options: {delay: '2s'}})
+```
+
 #### Methods
 
 init()
