@@ -73,6 +73,7 @@ class Menu{
 
                 if(positions.has(this.data.options.direction)){
                     this.menu.classList.add(`menu--to-${this.data.options.direction}`)
+                    
                     this.opener= `open--${this.data.options.direction}`
                 }
                 else{
