@@ -41,7 +41,6 @@ class Menu{
                 this.eventOnClose = this.data.options.eventOnClose
             }
             
-
             if(this.data.options.hasOwnProperty('callbackOnOpen')){
                 this.callbackOnOpen = this.data.options.callbackOnOpen
             }
@@ -298,19 +297,46 @@ class Menu{
             const elementID = document.getElementById(element.substring(1))
 
             if(elementID){
-                elementID.addEventListener(this.eventOnOpen, () => {
-                    if(!this.menu.classList.contains(opener)){
-                        this.menu.classList.add(opener)
-                        if (typeof callbackOnOpen == "function")
+
+                if(this.eventOnOpen == this.eventOnClose){
+                    elementID.addEventListener(this.eventOnOpen, () => {
+                        if(!this.menu.classList.contains(opener)){
+                            this.menu.classList.add(opener)
+                            this.isOpen = true
+                            if (typeof callbackOnOpen == "function")
+                                    callbackOnOpen()
+                        }
+                        else{
+                            this.menu.classList.remove(opener)
+                            this.isOpen = false
+                            if (typeof callbackOnClose == "function")
+                                    callbackOnClose()
+                        }
+            
+                    });
+                }
+                else{
+                    elementID.addEventListener(this.eventOnOpen, () => {
+                        if(!this.menu.classList.contains(opener)){
+                            this.menu.classList.add(opener)
+                            this.isOpen = true
+                            if (typeof callbackOnOpen == "function")
                                 callbackOnOpen()
-                    }
-                    else{
-                        this.menu.classList.remove(opener)
-                        if (typeof callbackOnClose == "function")
+                        }
+                       
+                    });
+
+                    elementID.addEventListener(this.eventOnClose, () => {
+                        if(this.menu.classList.contains(opener)){
+                            this.menu.classList.remove(opener)
+                            this.isOpen = false
+                            if (typeof callbackOnClose == "function")
                                 callbackOnClose()
-                    }
-        
-                });
+                        }
+                        
+                    });
+                }
+               
             }
             else{
                 this.warn(`* * *  WARNING * * * \nelement ${element} not found`)
