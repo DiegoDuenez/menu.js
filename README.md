@@ -158,7 +158,7 @@ callbackOnClose
 warns
 
 * @Boolean
-* In this property you will define if you want console warning message or not. By default the value is true and you don't need to call in options.
+* In this property you will define if you want console warning messages or not. By default the value is true and you don't need to call in options.
 
 ```javascript
     Menu = new Menu({options: {warns: false}})

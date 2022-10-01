@@ -246,20 +246,46 @@ class Menu{
 
             if(elements.length > 0){
                 elements.forEach(element => {
-                    element.addEventListener(this.eventOnOpen, () => {
-                        if(!this.menu.classList.contains(opener)){
-                            this.menu.classList.add(opener)
-                            this.isOpen = true
-                            if (typeof callbackOnOpen == "function")
-                                callbackOnOpen()
-                        }
-                        else{
-                            this.menu.classList.remove(opener)
-                            this.isOpen = false
-                            if (typeof callbackOnClose == "function")
-                                callbackOnClose()
-                        }
-                    });
+
+                    if(this.eventOnOpen == this.eventOnClose){
+                        element.addEventListener(this.eventOnOpen, () => {
+                            if(!this.menu.classList.contains(opener)){
+                                this.menu.classList.add(opener)
+                                this.isOpen = true
+                                if (typeof callbackOnOpen == "function")
+                                    callbackOnOpen()
+                            }
+                            else{
+                                this.menu.classList.remove(opener)
+                                this.isOpen = false
+                                if (typeof callbackOnClose == "function")
+                                    callbackOnClose()
+                            }
+                           
+                        });
+                    }
+                    else{
+                        element.addEventListener(this.eventOnOpen, () => {
+                            if(!this.menu.classList.contains(opener)){
+                                this.menu.classList.add(opener)
+                                this.isOpen = true
+                                if (typeof callbackOnOpen == "function")
+                                    callbackOnOpen()
+                            }
+                           
+                        });
+    
+                        element.addEventListener(this.eventOnClose, () => {
+                            if(this.menu.classList.contains(opener)){
+                                this.menu.classList.remove(opener)
+                                this.isOpen = false
+                                if (typeof callbackOnClose == "function")
+                                    callbackOnClose()
+                            }
+                            
+                        });
+                    }
+                    
                 });
             }
             else{
