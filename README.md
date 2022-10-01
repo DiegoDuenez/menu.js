@@ -57,6 +57,7 @@ size
     * sm -> Small 30%
     * md -> Medium 50%
     * lg -> Large 100%
+    * custom -> You can add a custom size like: 10rem, 80%, 25px or whatever
 
 ```javascript
     Menu = new Menu({options: {size: 'sm'}})

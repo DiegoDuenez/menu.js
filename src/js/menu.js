@@ -58,8 +58,8 @@ class Menu{
                     this.menu.classList.add(`menu--${this.data.options.size}`)
                 }
                 else{
-                    this.warn('* * *  WARNING * * * \nYou are using a measure that does not exist. By default, the size class will be large (lg)')
-                    this.menu.classList.add('menu--lg')
+                    
+                    this.menu.style.cssText += 'width:'+this.data.options.size+' !important';
                 }
             }
             else{
