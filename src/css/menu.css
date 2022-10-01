@@ -44,14 +44,14 @@
 
 /*
 |  ----------------------------------------------------------------------------------
-|   Menu direction
+|   Menu direction from
 |  ----------------------------------------------------------------------------------
 |   
 |   These classes are used for the direction when you open your menu.
 |  
 |   
 */
-.menu--to-left{
+.menu--from-left{
     transition: left .5s;
     left: -100%;
     top: 0;
@@ -59,12 +59,12 @@
     right: 0;
 }
 
-.menu--to-right{
+.menu--from-right{
     transition: right .5s;
     right: -100%;
 }
 
-.menu--to-top{
+.menu--from-top{
     transition: top .5s;
     top: -100%;
     left: 0;
@@ -72,10 +72,12 @@
     right: 0;
 }
 
-.menu--to-bottom{
+.menu--from-bottom{
     transition: bottom .5s;
     bottom: -100%;
 }
+
+
 
 
 

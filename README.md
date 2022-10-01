@@ -62,18 +62,17 @@ size
     Menu = new Menu({options: {size: 'sm'}})
 ```
 
-direction
+from
 
 * @String
-* In this property you will define in which direction you want the menu to open.
+* In this property you will define from which direction you want the menu to open.
     * top
     * right
     * bottom
     * left
 
-
 ```javascript
-    Menu = new Menu({options: {direction: 'bottom'}})
+    Menu = new Menu({options: {from: 'bottom'}})
 ```
 
 speed
@@ -172,7 +171,7 @@ init()
 * Once the options are ready in the class constructor, the init function will be used to run and make the menu work with the configuration.
 
 ```javascript
-    Menu = new Menu({options: {element: '#menu', openAndCloseWith: '#mybutton', size:'lg', direction: 'left'}})
+    Menu = new Menu({options: {element: '#menu', openAndCloseWith: '#mybutton', size:'lg', from: 'left'}})
     Menu.init();
 ```
 
@@ -184,7 +183,7 @@ isOpen
 * Returns if menu is open or not
 
 ```javascript
-    Menu = new Menu({options: {element: '#menu', openAndCloseWith: '#mybutton', size:'lg', direction: 'left'}})
+    Menu = new Menu({options: {element: '#menu', openAndCloseWith: '#mybutton', size:'lg', from: 'left'}})
     Menu.init();
     console.log(Menu.isOpen)
 ```

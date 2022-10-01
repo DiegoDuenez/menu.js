@@ -36,7 +36,6 @@ class Menu{
             if(this.data.options.hasOwnProperty('eventOnOpen')){
                 this.eventOnOpen = this.data.options.eventOnOpen
             }
-            
 
             if(this.data.options.hasOwnProperty('eventOnClose')){
                 this.eventOnClose = this.data.options.eventOnClose
@@ -67,24 +66,24 @@ class Menu{
                 this.menu.classList.add('menu--lg')
             }
             
-            if(this.data.options.hasOwnProperty('direction')){
+            if(this.data.options.hasOwnProperty('from')){
 
                 var positions = new Set(["top", "left", "right", "bottom"]);
 
-                if(positions.has(this.data.options.direction)){
-                    this.menu.classList.add(`menu--to-${this.data.options.direction}`)
+                if(positions.has(this.data.options.from)){
+                    this.menu.classList.add(`menu--from-${this.data.options.from}`)
                     
-                    this.opener= `open--${this.data.options.direction}`
+                    this.opener= `open--${this.data.options.from}`
                 }
                 else{
                     this.warn('* * *  WARNING * * * \nYou are using a direction that does not exist. By default, the direction class will be to left (left)')
-                    this.menu.classList.add('menu--to-left')
+                    this.menu.classList.add('menu--from-left')
                     this.opener= 'open--left'
                 }
 
             }
             else{
-                this.menu.classList.add('menu--to-left')
+                this.menu.classList.add('menu--from-left')
                 this.opener= 'open--left'
             }
 
