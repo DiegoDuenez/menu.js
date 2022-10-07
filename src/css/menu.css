@@ -32,6 +32,7 @@
     height: 100%;
     position: fixed;
     z-index: 9999;
+    visibility: hidden;
     /* flex-direction: column;
     justify-content: center;
     align-items: center; */

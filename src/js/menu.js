@@ -28,6 +28,7 @@ class Menu{
          
             if(this.data.options.hasOwnProperty('element')){
                 this.menu = document.querySelector(this.data.options.element)
+                this.menu.style.cssText += 'visibility: visible;'
             }
             else{
                 this.warn('* * *  WARNING * * * \nYou need add element property in the options')
