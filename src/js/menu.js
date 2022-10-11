@@ -186,6 +186,31 @@ class Menu{
             }
 
         }
+        else{
+
+            const elements =  Array.from(document.getElementsByTagName(element))
+
+            if(elements.length > 0){
+                elements.forEach(element => {
+
+                    element.addEventListener(this.eventOnOpen, () => {
+    
+                        if(!this.menu.classList.contains(opener)){
+                            this.menu.classList.add(opener)
+                            this.isOpen = true
+                            if (typeof callback == "function")
+                                callback()
+                        }
+                        
+                    });
+    
+                })
+            }
+            else{
+                this.warn(`* * *  WARNING * * * \nelement(s) ${element} not found`)
+            }
+
+        }
 
     }
 
@@ -232,6 +257,30 @@ class Menu{
             }
             else{
                 this.warn(`* * *  WARNING * * * \nelement ${element} not found`)
+            }
+
+        }
+        else{
+
+            var elements =  Array.from(document.getElementsByTagName(element));
+
+            if(elements.length > 0){
+                elements.forEach(element => {
+
+                    element.addEventListener(this.eventOnClose, () => {
+                        if(this.menu.classList.contains(opener)){
+                            this.menu.classList.remove(opener)
+                            this.isOpen = false
+                            if (typeof callback == "function")
+                                callback()
+                        }
+                        
+                    });
+
+                })
+            }
+            else{
+                this.warn(`* * *  WARNING * * * \nelement(s) ${element} not found`)
             }
 
         }
@@ -342,7 +391,58 @@ class Menu{
             else{
                 this.warn(`* * *  WARNING * * * \nelement ${element} not found`)
             }
+            
+        }
+        else{
+            const elements = Array.from(document.getElementsByTagName(element));
 
+            if(elements.length > 0){
+                elements.forEach(element => {
+
+                    if(this.eventOnOpen == this.eventOnClose){
+                        element.addEventListener(this.eventOnOpen, () => {
+                            if(!this.menu.classList.contains(opener)){
+                                this.menu.classList.add(opener)
+                                this.isOpen = true
+                                if (typeof callbackOnOpen == "function")
+                                    callbackOnOpen()
+                            }
+                            else{
+                                this.menu.classList.remove(opener)
+                                this.isOpen = false
+                                if (typeof callbackOnClose == "function")
+                                    callbackOnClose()
+                            }
+                           
+                        });
+                    }
+                    else{
+                        element.addEventListener(this.eventOnOpen, () => {
+                            if(!this.menu.classList.contains(opener)){
+                                this.menu.classList.add(opener)
+                                this.isOpen = true
+                                if (typeof callbackOnOpen == "function")
+                                    callbackOnOpen()
+                            }
+                           
+                        });
+    
+                        element.addEventListener(this.eventOnClose, () => {
+                            if(this.menu.classList.contains(opener)){
+                                this.menu.classList.remove(opener)
+                                this.isOpen = false
+                                if (typeof callbackOnClose == "function")
+                                    callbackOnClose()
+                            }
+                            
+                        });
+                    }
+                    
+                });
+            }
+            else{
+                this.warn(`* * *  WARNING * * * \nelement(s) ${element} not found`)
+            }
         }
     }
 

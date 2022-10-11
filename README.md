@@ -26,7 +26,7 @@ element
 openAndCloseWith
 
 * @String
-* In this property you will define which element with a certain class (.class) or a certain id (#id) will close and open your menu.
+* In this property you will define which element with a certain class (.class), certain id (#id) or a certain tag will open and close your menu.
 
 ```javascript
     Menu = new Menu({options: {openAndCloseWith: '.mybutton'}})
@@ -35,7 +35,7 @@ openAndCloseWith
 openWith
 
 * @String
-* In this property you will define which element with a certain class (.class) or a certain id (#id) will open your menu.
+* In this property you will define which element with a certain class (.class), certain id (#id) or a certain tag will open your menu.
 
 ```javascript
     Menu = new Menu({options: {openWith: '.mybutton'}})
@@ -44,7 +44,7 @@ openWith
 closeWith
 
 * @String
-* In this property you will define which element with a certain class (.class) or a certain id (#id) will close your menu.
+* In this property you will define which element with a certain class (.class), certain id (#id) or a certain tag will close your menu.
 
 ```javascript
     Menu = new Menu({options: {openWith: '.openButton', closeWith: '#closeButton'}})
