@@ -59,7 +59,7 @@ class Menu{
                 }
                 else{
                     
-                    this.menu.style.cssText += 'width:'+this.data.options.size+' !important';
+                    this.menu.style.cssText += 'width:'+this.data.options.size;
                 }
             }
             else{
@@ -95,7 +95,7 @@ class Menu{
                     this.menu.classList.add(`menu--speed-${this.data.options.speed}`)
                 }
                 else{
-                    this.menu.style.cssText += 'transition-duration:'+this.data.options.speed+' !important';
+                    this.menu.style.cssText += 'transition-duration:'+this.data.options.speed;
                 }
             }
             else{
@@ -103,14 +103,14 @@ class Menu{
             }
 
             if(this.data.options.hasOwnProperty('delay')){
-                this.menu.style.cssText += 'transition-delay:'+this.data.options.delay+' !important';
+                this.menu.style.cssText += 'transition-delay:'+this.data.options.delay;
             }
             else{
-                this.menu.style.cssText += 'transition-delay:'+0+' !important';
+                this.menu.style.cssText += 'transition-delay:'+0;
             }
 
             if(this.data.options.hasOwnProperty('timing')){
-                this.menu.style.cssText += 'transition-timing-function:'+this.data.options.timing+' !important';
+                this.menu.style.cssText += 'transition-timing-function:'+this.data.options.timing;
             }
             else{
                 this.menu.style.cssText += 'transition-timing-function: unset !important';

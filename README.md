@@ -176,6 +176,47 @@ init()
     Menu.init();
 ```
 
+openWith()
+
+* @String
+* This function allows you to execute the action of opening the menu when the element passed in the parameter is clicked. The parameter must be a .class, #id or html tag as string.
+
+
+```javascript
+    Menu = new Menu({options: {element: '#menu', openAndCloseWith: '#mybutton', size:'lg', from: 'left'}})
+    Menu.init();
+    Menu.openWith('.openLink');
+
+```
+
+closeWith()
+
+* @String
+* This function allows you to execute the action of closing the menu when the element passed in the parameter is clicked. The parameter must be a .class, #id or html tag as string.
+
+
+```javascript
+    Menu = new Menu({options: {element: '#menu', openAndCloseWith: '#mybutton', size:'lg', from: 'left'}})
+    Menu.init();
+    Menu.closeWith('#closeLink');
+
+```
+
+
+openAndCloseWith()
+
+* @String
+* This function allows you to execute the action of opening and closing the menu when the element passed in the parameter is clicked. The parameter must be a .class, #id or html tag as string.
+
+
+```javascript
+    Menu = new Menu({options: {element: '#menu', openAndCloseWith: '#mybutton', size:'lg', from: 'left'}})
+    Menu.init();
+    Menu.closeWith('button');
+
+```
+
+
 #### Attributes
 
 isOpen
