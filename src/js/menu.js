@@ -118,218 +118,122 @@ class Menu{
 
             if(this.data.options.hasOwnProperty('openAndCloseWith')){
                 this.elementOpener = this.data.options.openAndCloseWith;
-                this.openAndCloseWith(this.elementOpener, this.opener, this.callbackOnOpen, this.callbackOnClose)
+                this.openAndCloseWith(this.elementOpener)
             }
             else if(this.data.options.hasOwnProperty('openWith') && this.data.options.hasOwnProperty('closeWith')){
                 this.elementOpener = this.data.options.openWith
                 this.elementCloser = this.data.options.closeWith
-                this.openWith(this.elementOpener, this.opener, this.callbackOnOpen)
-                this.closeWith(this.elementCloser, this.opener, this.callbackOnClose)
+                this.openWith(this.elementOpener)
+                this.closeWith(this.elementCloser)
             }
             else if(this.data.options.hasOwnProperty('openWith')){
                 this.elementOpener = this.data.options.openWith
-                this.openWith(this.elementOpener, this.opener, this.callbackOnOpen)
+                this.openWith(this.elementOpener)
                 this.warn('* * *  WARNING * * * \nYou need add closeWith in the options')
             }
             else if(this.data.options.hasOwnProperty('closeWith')){
                 this.elementCloser = this.data.options.closeWith
-                this.closeWith(this.elementCloser, this.opener, this.callbackOnClose)
+                this.closeWith(this.elementCloser)
                 this.warn('* * *  WARNING * * * \nYou need add openWith in the options')
             }
 
         }
     }
 
-    openWith(element, opener, callback = undefined){
+    openWith(element){
 
-        if(element.startsWith('.')){
+        const elements = Array.from(document.querySelectorAll(element));
 
-            const elements = Array.from(document.getElementsByClassName(element.substring(1)));
+        if(elements.length > 0){
+            elements.forEach(element => {
 
-            if(elements.length > 0){
-                elements.forEach(element => {
+                element.addEventListener(this.eventOnOpen, () => {
 
-                    element.addEventListener(this.eventOnOpen, () => {
-    
-                        if(!this.menu.classList.contains(opener)){
-                            this.menu.classList.add(opener)
-                            this.isOpen = true
-                            if (typeof callback == "function")
-                                callback()
-                        }
-                        
-                    });
-    
-                })
-            }
-            else{
-                this.warn(`* * *  WARNING * * * \nelement(s) ${element} not found`)
-            }
-           
-        }
-        else if(element.startsWith('#')){
-
-            var elementID = document.getElementById(element.substring(1))
-
-            if(elementID){
-                elementID.addEventListener(this.eventOnOpen, () => {
-                    if(!this.menu.classList.contains(opener)){
-                        this.menu.classList.add(opener)
+                    if(!this.menu.classList.contains(this.opener)){
+                        this.menu.classList.add(this.opener)
                         this.isOpen = true
-                        if (typeof callback == "function")
-                            callback()
+                        if (typeof this.callbackOnOpen == "function")
+                            this.callbackOnOpen()
                     }
+                    
                 });
-            }
-            else{
-                this.warn(`* * *  WARNING * * * \nelement ${element} not found`)
-            }
 
+            })
         }
         else{
-
-            const elements =  Array.from(document.getElementsByTagName(element))
-
-            if(elements.length > 0){
-                elements.forEach(element => {
-
-                    element.addEventListener(this.eventOnOpen, () => {
-    
-                        if(!this.menu.classList.contains(opener)){
-                            this.menu.classList.add(opener)
-                            this.isOpen = true
-                            if (typeof callback == "function")
-                                callback()
-                        }
-                        
-                    });
-    
-                })
-            }
-            else{
-                this.warn(`* * *  WARNING * * * \nelement(s) ${element} not found`)
-            }
-
+            this.warn(`* * *  WARNING * * * \nelement(s) ${element} not found`)
         }
 
     }
 
 
-    closeWith(element, opener, callback=undefined){
+    closeWith(element){
 
-        if(element.startsWith('.')){
+        const elements =  Array.from(document.querySelectorAll(element));
 
-            var elements =  Array.from(document.getElementsByClassName(element.substring(1)));
+        if(elements.length > 0){
+            elements.forEach(element => {
 
-            if(elements.length > 0){
-                elements.forEach(element => {
-
-                    element.addEventListener(this.eventOnClose, () => {
-                        if(this.menu.classList.contains(opener)){
-                            this.menu.classList.remove(opener)
-                            this.isOpen = false
-                            if (typeof callback == "function")
-                                callback()
-                        }
-                        
-                    });
-
-                })
-            }
-            else{
-                this.warn(`* * *  WARNING * * * \nelement(s) ${element} not found`)
-            }
-           
-        }
-        else if(element.startsWith('#')){
-
-            var elementID = document.getElementById(element.substring(1))
-
-            if(elementID){
-                elementID.addEventListener(this.eventOnClose, () => {
-                    if(this.menu.classList.contains(opener)){
-                        this.menu.classList.remove(opener)
+                element.addEventListener(this.eventOnClose, () => {
+                    if(this.menu.classList.contains(this.opener)){
+                        this.menu.classList.remove(this.opener)
                         this.isOpen = false
-                        if (typeof callback == "function")
-                            callback()
+                        if (typeof this.callbackOnClose == "function")
+                            this.callbackOnClose()
                     }
+                    
                 });
-            }
-            else{
-                this.warn(`* * *  WARNING * * * \nelement ${element} not found`)
-            }
 
+            })
         }
         else{
-
-            var elements =  Array.from(document.getElementsByTagName(element));
-
-            if(elements.length > 0){
-                elements.forEach(element => {
-
-                    element.addEventListener(this.eventOnClose, () => {
-                        if(this.menu.classList.contains(opener)){
-                            this.menu.classList.remove(opener)
-                            this.isOpen = false
-                            if (typeof callback == "function")
-                                callback()
-                        }
-                        
-                    });
-
-                })
-            }
-            else{
-                this.warn(`* * *  WARNING * * * \nelement(s) ${element} not found`)
-            }
-
+            this.warn(`* * *  WARNING * * * \nelement(s) ${element} not found`)
         }
+       
 
     }
 
-    openAndCloseWith(element, opener, callbackOnOpen = undefined, callbackOnClose = undefined){
+    openAndCloseWith(element){
 
-        if(element.startsWith('.')){
-
-            const elements = Array.from(document.getElementsByClassName(element.substring(1)));
+        const elements = Array.from(document.querySelectorAll(element));
 
             if(elements.length > 0){
                 elements.forEach(element => {
 
                     if(this.eventOnOpen == this.eventOnClose){
                         element.addEventListener(this.eventOnOpen, () => {
-                            if(!this.menu.classList.contains(opener)){
-                                this.menu.classList.add(opener)
+                            if(!this.menu.classList.contains(this.opener)){
+                                this.menu.classList.add(this.opener)
                                 this.isOpen = true
-                                if (typeof callbackOnOpen == "function")
-                                    callbackOnOpen()
+                                if (typeof this.callbackOnOpen == "function")
+                                    this.callbackOnOpen()
                             }
                             else{
-                                this.menu.classList.remove(opener)
+                                this.menu.classList.remove(this.opener)
                                 this.isOpen = false
-                                if (typeof callbackOnClose == "function")
-                                    callbackOnClose()
+                                if (typeof this.callbackOnClose == "function")
+                                   this.callbackOnClose()
                             }
                            
                         });
                     }
                     else{
                         element.addEventListener(this.eventOnOpen, () => {
-                            if(!this.menu.classList.contains(opener)){
-                                this.menu.classList.add(opener)
+                            if(!this.menu.classList.contains(this.opener)){
+                                this.menu.classList.add(this.opener)
                                 this.isOpen = true
-                                if (typeof callbackOnOpen == "function")
-                                    callbackOnOpen()
+                                if (typeof this.callbackOnOpen == "function")
+                                    this.callbackOnOpen()
                             }
                            
                         });
     
                         element.addEventListener(this.eventOnClose, () => {
-                            if(this.menu.classList.contains(opener)){
-                                this.menu.classList.remove(opener)
+                            if(this.menu.classList.contains(this.opener)){
+                                this.menu.classList.remove(this.opener)
                                 this.isOpen = false
-                                if (typeof callbackOnClose == "function")
-                                    callbackOnClose()
+                                if (typeof this.callbackOnClose == "function")
+                                    this.callbackOnClose()
                             }
                             
                         });
@@ -340,110 +244,6 @@ class Menu{
             else{
                 this.warn(`* * *  WARNING * * * \nelement(s) ${element} not found`)
             }
-
-        }
-        else if(element.startsWith('#')){
-
-            const elementID = document.getElementById(element.substring(1))
-
-            if(elementID){
-
-                if(this.eventOnOpen == this.eventOnClose){
-                    elementID.addEventListener(this.eventOnOpen, () => {
-                        if(!this.menu.classList.contains(opener)){
-                            this.menu.classList.add(opener)
-                            this.isOpen = true
-                            if (typeof callbackOnOpen == "function")
-                                    callbackOnOpen()
-                        }
-                        else{
-                            this.menu.classList.remove(opener)
-                            this.isOpen = false
-                            if (typeof callbackOnClose == "function")
-                                    callbackOnClose()
-                        }
-            
-                    });
-                }
-                else{
-                    elementID.addEventListener(this.eventOnOpen, () => {
-                        if(!this.menu.classList.contains(opener)){
-                            this.menu.classList.add(opener)
-                            this.isOpen = true
-                            if (typeof callbackOnOpen == "function")
-                                callbackOnOpen()
-                        }
-                       
-                    });
-
-                    elementID.addEventListener(this.eventOnClose, () => {
-                        if(this.menu.classList.contains(opener)){
-                            this.menu.classList.remove(opener)
-                            this.isOpen = false
-                            if (typeof callbackOnClose == "function")
-                                callbackOnClose()
-                        }
-                        
-                    });
-                }
-               
-            }
-            else{
-                this.warn(`* * *  WARNING * * * \nelement ${element} not found`)
-            }
-            
-        }
-        else{
-            const elements = Array.from(document.getElementsByTagName(element));
-
-            if(elements.length > 0){
-                elements.forEach(element => {
-
-                    if(this.eventOnOpen == this.eventOnClose){
-                        element.addEventListener(this.eventOnOpen, () => {
-                            if(!this.menu.classList.contains(opener)){
-                                this.menu.classList.add(opener)
-                                this.isOpen = true
-                                if (typeof callbackOnOpen == "function")
-                                    callbackOnOpen()
-                            }
-                            else{
-                                this.menu.classList.remove(opener)
-                                this.isOpen = false
-                                if (typeof callbackOnClose == "function")
-                                    callbackOnClose()
-                            }
-                           
-                        });
-                    }
-                    else{
-                        element.addEventListener(this.eventOnOpen, () => {
-                            if(!this.menu.classList.contains(opener)){
-                                this.menu.classList.add(opener)
-                                this.isOpen = true
-                                if (typeof callbackOnOpen == "function")
-                                    callbackOnOpen()
-                            }
-                           
-                        });
-    
-                        element.addEventListener(this.eventOnClose, () => {
-                            if(this.menu.classList.contains(opener)){
-                                this.menu.classList.remove(opener)
-                                this.isOpen = false
-                                if (typeof callbackOnClose == "function")
-                                    callbackOnClose()
-                            }
-                            
-                        });
-                    }
-                    
-                });
-            }
-            else{
-                this.warn(`* * *  WARNING * * * \nelement(s) ${element} not found`)
-            }
-        }
     }
 
     warn(message){
