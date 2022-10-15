@@ -113,7 +113,7 @@ class Menu{
                 this.menu.style.cssText += 'transition-timing-function:'+this.data.options.timing;
             }
             else{
-                this.menu.style.cssText += 'transition-timing-function: unset !important';
+                this.menu.style.cssText += 'transition-timing-function: unset';
             }
 
             if(this.data.options.hasOwnProperty('openAndCloseWith')){
