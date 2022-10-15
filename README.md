@@ -212,7 +212,7 @@ openAndCloseWith()
 ```javascript
     Menu = new Menu({options: {element: '#menu', openAndCloseWith: '#mybutton', size:'lg', from: 'left'}})
     Menu.init();
-    Menu.closeWith('button');
+    Menu.openAndCloseWith('button');
 
 ```
 
