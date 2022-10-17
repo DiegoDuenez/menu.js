@@ -25,8 +25,8 @@ element
 
 openAndCloseWith
 
-* @String
-* In this property you will define which element with a certain class (.class), certain id (#id) or a certain tag will open and close your menu.
+* @String | @Array
+* In this property you will define which element(s) with a certain class (.class), certain id (#id) or a certain tag will open and close your menu.
 
 ```javascript
     Menu = new Menu({options: {openAndCloseWith: '.mybutton'}})
@@ -34,17 +34,17 @@ openAndCloseWith
 
 openWith
 
-* @String
-* In this property you will define which element with a certain class (.class), certain id (#id) or a certain tag will open your menu.
+* @String | @Array
+* In this property you will define which element(s) with a certain class (.class), certain id (#id) or a certain tag will open your menu.
 
 ```javascript
-    Menu = new Menu({options: {openWith: '.mybutton'}})
+    Menu = new Menu({options: {openWith: ['.mybutton', '.otherbutton']}})
 ```
 
 closeWith
 
-* @String
-* In this property you will define which element with a certain class (.class), certain id (#id) or a certain tag will close your menu.
+* @String | @Array
+* In this property you will define which element(s) with a certain class (.class), certain id (#id) or a certain tag will close your menu.
 
 ```javascript
     Menu = new Menu({options: {openWith: '.openButton', closeWith: '#closeButton'}})
@@ -178,8 +178,8 @@ init()
 
 openWith()
 
-* @String
-* This function allows you to execute the action of opening the menu when the element passed in the parameter is clicked. The parameter must be a .class, #id or html tag as string.
+* @String | @Array
+* This function allows you to execute the action of opening the menu when the element passed in the parameter is clicked. The parameter must be a .class, #id or html tag as string or array of strings.
 
 
 ```javascript
@@ -191,8 +191,8 @@ openWith()
 
 closeWith()
 
-* @String
-* This function allows you to execute the action of closing the menu when the element passed in the parameter is clicked. The parameter must be a .class, #id or html tag as string.
+* @String | @Array
+* This function allows you to execute the action of closing the menu when the element passed in the parameter is clicked. The parameter must be a .class, #id or html tag as string or array of strings..
 
 
 ```javascript
@@ -206,7 +206,7 @@ closeWith()
 openAndCloseWith()
 
 * @String
-* This function allows you to execute the action of opening and closing the menu when the element passed in the parameter is clicked. The parameter must be a .class, #id or html tag as string.
+* This function allows you to execute the action of opening and closing the menu when the element passed in the parameter is clicked. The parameter must be a .class, #id or html tag as string or array of strings..
 
 
 ```javascript
