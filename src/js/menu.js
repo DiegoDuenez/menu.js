@@ -21,10 +21,17 @@ class Menu{
         this.eventOnClose = 'click'
         this.callbackOnOpen = undefined
         this.callbackOnClose = undefined
+        this.isFullscreen = false
       
         if(this.data.hasOwnProperty('options')){
 
             this.data.options.hasOwnProperty('warns') ? this.warns = this.data.options.warns  :  this.warns = true;
+            this.data.options.hasOwnProperty('isFullscreen') ? this.isFullscreen = this.data.options.isFullscreen  :  this.isFullscreen = false;
+
+
+            // if(this.data.options.hasOwnProperty('isFullscreen')){
+            //     this.isFullscreen = this.data.options.isFullscreen
+            // }
          
             if(this.data.options.hasOwnProperty('element')){
                 this.menu = document.querySelector(this.data.options.element)
@@ -49,6 +56,8 @@ class Menu{
             if(this.data.options.hasOwnProperty('callbackOnClose')){
                 this.callbackOnClose = this.data.options.callbackOnClose
             }
+
+           
            
             if(this.data.options.hasOwnProperty('size')){
 
@@ -178,6 +187,9 @@ class Menu{
                     if(this.menu.classList.contains(this.opener)){
                         this.menu.classList.remove(this.opener)
                         this.isOpen = false
+                        if(this.isFullscreen){
+                            this.cancelFullScreen()
+                        }
                         if (typeof this.callbackOnClose == "function")
                             this.callbackOnClose()
                     }
@@ -205,12 +217,18 @@ class Menu{
                             if(!this.menu.classList.contains(this.opener)){
                                 this.menu.classList.add(this.opener)
                                 this.isOpen = true
+                                if(this.isFullscreen){
+                                    this.requestFullScreen(document.body)
+                                }
                                 if (typeof this.callbackOnOpen == "function")
                                     this.callbackOnOpen()
                             }
                             else{
                                 this.menu.classList.remove(this.opener)
                                 this.isOpen = false
+                                if(this.isFullscreen){
+                                    this.cancelFullScreen()
+                                }
                                 if (typeof this.callbackOnClose == "function")
                                    this.callbackOnClose()
                             }
@@ -222,6 +240,9 @@ class Menu{
                             if(!this.menu.classList.contains(this.opener)){
                                 this.menu.classList.add(this.opener)
                                 this.isOpen = true
+                                if(this.isFullscreen){
+                                    this.requestFullScreen(document.body)
+                                }
                                 if (typeof this.callbackOnOpen == "function")
                                     this.callbackOnOpen()
                             }
@@ -232,6 +253,9 @@ class Menu{
                             if(this.menu.classList.contains(this.opener)){
                                 this.menu.classList.remove(this.opener)
                                 this.isOpen = false
+                                if(this.isFullscreen){
+                                    this.cancelFullScreen()
+                                }
                                 if (typeof this.callbackOnClose == "function")
                                     this.callbackOnClose()
                             }
@@ -249,6 +273,33 @@ class Menu{
     warn(message){
         this.warns ? console.warn(message) : null
     }
+
+    cancelFullScreen() {
+        var el = document;
+        var requestMethod = el.cancelFullScreen||el.webkitCancelFullScreen||el.mozCancelFullScreen||el.exitFullscreen||el.webkitExitFullscreen;
+        if (requestMethod) { // cancel full screen.
+            requestMethod.call(el);
+        } else if (typeof window.ActiveXObject !== "undefined") { // Older IE.
+            var wscript = new ActiveXObject("WScript.Shell");
+            if (wscript !== null) {
+                wscript.SendKeys("{F11}");
+            }
+        }
+    }
+
+    requestFullScreen(element) {
+        var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullscreen;
+        if (requestMethod) {
+            requestMethod.call(element);
+        } else if (typeof window.ActiveXObject !== "undefined") {
+            var wscript = new ActiveXObject("WScript.Shell");
+            if (wscript !== null) {
+                wscript.SendKeys("{F11}");
+            }
+        }
+        return false
+    }
+
 
    
 

@@ -164,6 +164,15 @@ warns
     Menu = new Menu({options: {warns: false}})
 ```
 
+isFullscreen
+
+* @Boolean
+* In this property you will define if you want convert to fullscreen window browser when menu is open. By default the value is false and you don't need to call in options.
+
+```javascript
+    Menu = new Menu({options: {isFullscreen: true}})
+```
+
 #### Methods
 
 init()
