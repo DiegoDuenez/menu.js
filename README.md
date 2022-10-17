@@ -17,7 +17,7 @@
 element
 
 * @String
-* In this property you will define which element with a certain class (.class) or a certain id (#id) will be your menu
+* In this property you will define which element with a certain class (.class) or a certain id (#id) will be your menu.
 
 ```javascript
     Menu = new Menu({options: {element: '.menu'}})
@@ -167,7 +167,7 @@ warns
 isFullscreen
 
 * @Boolean
-* In this property you will define if you want convert to fullscreen window browser when menu is open. By default the value is false and you don't need to call in options.
+* In this property you will define if you want convert to fullscreen the window browser when menu is open. By default the value is false and you don't need to call in options.
 
 ```javascript
     Menu = new Menu({options: {isFullscreen: true}})
@@ -201,7 +201,7 @@ openWith()
 closeWith()
 
 * @String | @Array
-* This function allows you to execute the action of closing the menu when the element passed in the parameter is clicked. The parameter must be a .class, #id or html tag as string or array of strings..
+* This function allows you to execute the action of closing the menu when the element passed in the parameter is clicked. The parameter must be a .class, #id or html tag as string or array of strings.
 
 
 ```javascript
@@ -215,7 +215,7 @@ closeWith()
 openAndCloseWith()
 
 * @String
-* This function allows you to execute the action of opening and closing the menu when the element passed in the parameter is clicked. The parameter must be a .class, #id or html tag as string or array of strings..
+* This function allows you to execute the action of opening and closing the menu when the element passed in the parameter is clicked. The parameter must be a .class, #id or html tag as string or array of strings.
 
 
 ```javascript
