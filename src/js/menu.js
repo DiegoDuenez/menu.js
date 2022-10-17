@@ -28,11 +28,6 @@ class Menu{
             this.data.options.hasOwnProperty('warns') ? this.warns = this.data.options.warns  :  this.warns = true;
             this.data.options.hasOwnProperty('isFullscreen') ? this.isFullscreen = this.data.options.isFullscreen  :  this.isFullscreen = false;
 
-
-            // if(this.data.options.hasOwnProperty('isFullscreen')){
-            //     this.isFullscreen = this.data.options.isFullscreen
-            // }
-         
             if(this.data.options.hasOwnProperty('element')){
                 this.menu = document.querySelector(this.data.options.element)
                 this.menu.style.cssText += 'visibility: visible;'
@@ -56,8 +51,6 @@ class Menu{
             if(this.data.options.hasOwnProperty('callbackOnClose')){
                 this.callbackOnClose = this.data.options.callbackOnClose
             }
-
-           
            
             if(this.data.options.hasOwnProperty('size')){
 
