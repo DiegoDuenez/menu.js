@@ -27,15 +27,11 @@
 */
 .menu{
     position: relative;
-    /* display: flex; */
     width: 100%;
     height: 100%;
     position: fixed;
     z-index: 9999;
     visibility: hidden;
-    /* flex-direction: column;
-    justify-content: center;
-    align-items: center; */
     padding: 5%;
     background-color: rgb(245, 237, 14);
     font-family: Arial, Helvetica, sans-serif;
@@ -109,32 +105,6 @@
 
 .hide--right{
     right: -100%
-}
-
-
-
-/*
-|  ----------------------------------------------------------------------------------
-|   Open in 50%
-|  ----------------------------------------------------------------------------------
-|   
-|   These classes are used when your menu is a NON-FULLSCREEN sidebar.
-|   
-*/
-.open--right-50{
-    right:50%;
-}
-
-.open--left-50{
-    left:50%;
-}
-
-.open--top-50{
-    top:50%;
-}
-
-.open--bottom-50{
-    bottom:50%;
 }
 
 
