@@ -148,7 +148,7 @@ callbackOnClose
 
 ```javascript
     Menu = new Menu({options: {
-        callbackOnOpen: function(){
+        callbackOnClose: function(){
             alert('Callback on close')
         }
     }})
