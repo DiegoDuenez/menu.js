@@ -22,7 +22,11 @@ class Menu{
         this.callbackOnOpen = undefined
         this.callbackOnClose = undefined
         this.isFullscreen = false
-      
+        this.elementOpener = undefined
+        this.elementCloser = undefined
+        this.elementClicked = undefined
+        
+
         if(this.data.hasOwnProperty('options')){
 
             this.data.options.hasOwnProperty('warns') ? this.warns = this.data.options.warns  :  this.warns = true;
@@ -151,6 +155,8 @@ class Menu{
 
                 element.addEventListener(this.eventOnOpen, () => {
 
+                    this.elementClicked = element
+
                     if(!this.menu.classList.contains(this.opener)){
                         this.menu.classList.add(this.opener)
                         this.isOpen = true
@@ -177,6 +183,9 @@ class Menu{
             elements.forEach(element => {
 
                 element.addEventListener(this.eventOnClose, () => {
+
+                    this.elementClicked = element
+
                     if(this.menu.classList.contains(this.opener)){
                         this.menu.classList.remove(this.opener)
                         this.isOpen = false
@@ -207,6 +216,9 @@ class Menu{
 
                     if(this.eventOnOpen == this.eventOnClose){
                         element.addEventListener(this.eventOnOpen, () => {
+        
+                            this.elementClicked = element
+
                             if(!this.menu.classList.contains(this.opener)){
                                 this.menu.classList.add(this.opener)
                                 this.isOpen = true
@@ -230,6 +242,9 @@ class Menu{
                     }
                     else{
                         element.addEventListener(this.eventOnOpen, () => {
+
+                            this.elementClicked = element
+
                             if(!this.menu.classList.contains(this.opener)){
                                 this.menu.classList.add(this.opener)
                                 this.isOpen = true
@@ -243,6 +258,9 @@ class Menu{
                         });
     
                         element.addEventListener(this.eventOnClose, () => {
+
+                            this.elementClicked = element
+
                             if(this.menu.classList.contains(this.opener)){
                                 this.menu.classList.remove(this.opener)
                                 this.isOpen = false
