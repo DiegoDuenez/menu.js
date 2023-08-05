@@ -154,7 +154,6 @@ callbackOnClose
     }})
 ```
 
-
 warns
 
 * @Boolean
@@ -172,6 +171,25 @@ isFullscreen
 ```javascript
     Menu = new Menu({options: {isFullscreen: true}})
 ```
+
+collapsable
+
+* @Boolean
+* In this property you will define if you want a collapse menu. By default the value is false and yout don't need to call in options.
+
+```javascript
+    Menu = new Menu({options: {collapsable: true}})
+```
+
+collapsableContent
+
+* @Boolean
+* In this property you will define which element (main content) you want to collapse when menu is opened and closed. (collapsable property must be set to true)
+
+```javascript
+    Menu = new Menu({options: {collapsable: true, collapsableContent: '#container'}})
+```
+
 
 #### Methods
 
@@ -210,7 +228,6 @@ closeWith()
     Menu.closeWith('#closeLink');
 
 ```
-
 
 openAndCloseWith()
 

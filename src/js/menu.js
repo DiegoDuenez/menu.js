@@ -25,6 +25,8 @@ class Menu{
         this.elementOpener = undefined
         this.elementCloser = undefined
         this.elementClicked = undefined
+        this.isCollapsable = false
+        this.collapsableContent = undefined
         
 
         if(this.data.hasOwnProperty('options')){
@@ -55,6 +57,28 @@ class Menu{
             if(this.data.options.hasOwnProperty('callbackOnClose')){
                 this.callbackOnClose = this.data.options.callbackOnClose
             }
+
+            if(this.data.options.hasOwnProperty('collapsable')){
+
+                if(this.data.options.collapsable){
+                    this.isCollapsable = this.data.options.collapsable
+                    this.menu.classList.add('menu--collapsable')
+
+                    if(this.data.options.hasOwnProperty('collapsableContent')){
+                        this.collapsableContent = document.querySelector(this.data.options.collapsableContent)
+                    }
+                    
+                }
+                else{
+                    if(this.menu.classList.contains('menu--collapsable')){
+                        this.menu.classList.remove('menu--collapsable')
+                    }
+                }
+
+            }
+
+            
+
            
             if(this.data.options.hasOwnProperty('size')){
 
@@ -160,6 +184,12 @@ class Menu{
                     if(!this.menu.classList.contains(this.opener)){
                         this.menu.classList.add(this.opener)
                         this.isOpen = true
+                        if(this.isFullscreen){
+                            this.cancelFullScreen()
+                        }
+                        if(this.isCollapsable){
+                            this.collapseOpen();
+                        }
                         if (typeof this.callbackOnOpen == "function")
                             this.callbackOnOpen()
                     }
@@ -192,6 +222,9 @@ class Menu{
                         if(this.isFullscreen){
                             this.cancelFullScreen()
                         }
+                        if(this.isCollapsable){
+                            this.collapseClose();
+                        }
                         if (typeof this.callbackOnClose == "function")
                             this.callbackOnClose()
                     }
@@ -215,6 +248,7 @@ class Menu{
                 elements.forEach(element => {
 
                     if(this.eventOnOpen == this.eventOnClose){
+
                         element.addEventListener(this.eventOnOpen, () => {
         
                             this.elementClicked = element
@@ -225,6 +259,9 @@ class Menu{
                                 if(this.isFullscreen){
                                     this.requestFullScreen(document.body)
                                 }
+                                if(this.isCollapsable){
+                                    this.collapseOpen();
+                                }
                                 if (typeof this.callbackOnOpen == "function")
                                     this.callbackOnOpen()
                             }
@@ -233,6 +270,9 @@ class Menu{
                                 this.isOpen = false
                                 if(this.isFullscreen){
                                     this.cancelFullScreen()
+                                }
+                                if(this.isCollapsable){
+                                    this.collapseClose();
                                 }
                                 if (typeof this.callbackOnClose == "function")
                                    this.callbackOnClose()
@@ -251,6 +291,9 @@ class Menu{
                                 if(this.isFullscreen){
                                     this.requestFullScreen(document.body)
                                 }
+                                if(this.isCollapsable){
+                                    this.collapseOpen();
+                                }
                                 if (typeof this.callbackOnOpen == "function")
                                     this.callbackOnOpen()
                             }
@@ -266,6 +309,9 @@ class Menu{
                                 this.isOpen = false
                                 if(this.isFullscreen){
                                     this.cancelFullScreen()
+                                }
+                                if(this.isCollapsable){
+                                    this.collapseClose();
                                 }
                                 if (typeof this.callbackOnClose == "function")
                                     this.callbackOnClose()
@@ -311,6 +357,75 @@ class Menu{
         return false
     }
 
+    collapseOpen() {
+
+        let size = '100%'
+        let speed = '.5s'
+
+        if(this.data.options.size == 'sm'){
+            size = '30%'
+        }
+        else if(this.data.options.size == 'md'){
+            size = '50%'
+        }
+        else if(this.data.options.size == 'lg'){
+            size = '100%'
+        }
+        else{
+            if(this.data.options.size != undefined){
+                size = this.data.options.size
+            }
+        }
+
+        if(this.data.options.from == 'left'){
+            this.collapsableContent.style.marginLeft = size
+        }
+        else if(this.data.options.from == 'right'){
+            this.collapsableContent.style.marginRight = size
+        }
+        else if(this.data.options.from == 'top'){
+            this.collapsableContent.style.marginTop = size
+        }
+        else if(this.data.options.from == 'bottom'){
+            this.collapsableContent.style.marginBottom = size
+        }
+
+
+        if(this.data.options.speed == 'slow'){
+            speed = '2s'
+        }
+        else if(this.data.options.speed == 'normal'){
+            speed = '.5s'
+        }
+        else if(this.data.options.speed == 'fast'){
+            speed = '.2s'
+        }
+        else{
+            if(this.data.options.speed != undefined){
+                speed = this.data.options.speed
+            }
+        }
+
+        this.collapsableContent.style.transitionDuration = speed
+
+
+    }
+
+    collapseClose() {
+        if(this.data.options.from == 'left'){
+            this.collapsableContent.style.marginLeft = 0
+        }
+        else if(this.data.options.from == 'right'){
+            this.collapsableContent.style.marginRight = 0
+        }
+        else if(this.data.options.from == 'top'){
+            this.collapsableContent.style.marginTop = 0
+        }
+        else if(this.data.options.from == 'bottom'){
+            this.collapsableContent.style.marginBottom = 0
+        }
+
+    }
 
    
 
