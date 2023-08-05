@@ -124,7 +124,7 @@ eventOnClose
 * In this property you will define which event will be used to close the menu. By default the event is click and you don't need to call in options.
 
 ```javascript
-    Menu = new Menu({options: {eventOnClose: 'mouseover'}})
+    Menu = new Menu({options: {eventOnClose: 'mouseleave'}})
 ```
 
 callbackOnOpen
@@ -237,4 +237,18 @@ isOpen
     Menu = new Menu({options: {element: '#menu', openAndCloseWith: '#mybutton', size:'lg', from: 'left'}})
     Menu.init();
     console.log(Menu.isOpen)
+```
+
+elementClicked
+
+* @Boolean
+* Returns the element "clicked" in HTML Format
+
+```javascript
+    Menu = new Menu({options: {element: '.menu', openAndCloseWith: '#btn', eventOnOpen: 'mouseenter', eventOnClose: 'mouseleave',  size:'md', from: 'right', 
+        callbackOnOpen: function(){
+            console.log(Menu.elementClicked)
+        }}
+    })
+    Menu.init();
 ```
